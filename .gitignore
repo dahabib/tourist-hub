@@ -1,0 +1,13 @@
+# dependencies
+/node_modules
+.env
+_cacache
+_locks
+_logs
+.firebase
+
+# testing
+/coverage
+
+# production
+/build
