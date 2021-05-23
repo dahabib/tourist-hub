@@ -10,6 +10,12 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import AddGuide from "./components/AddGuide/AddGuide";
+import AddAdmin from "./components/AddAdmin/AddAdmin";
+import Bookings from "./components/Bookings/Bookings";
+import AddReview from "./components/AddReview/AddReview";
+import AddPlace from "./components/AddPlace/AddPlace";
+import Book from "./components/Book/Book";
 
 export const UserContext = createContext({});
 
@@ -28,6 +34,30 @@ function App() {
         </Route>
         <Route path="/admin/add-service">
           <AddService />
+        </Route>
+        <Route path="/admin/add-guide">
+          <AddGuide />
+        </Route>
+        <Route path="/admin/add-place">
+          <AddPlace />
+        </Route>
+        <Route path="/admin/add-admin">
+          <AddAdmin />
+        </Route>
+        <Route path="/admin/bookings">
+          <Bookings />
+        </Route>
+        <Route path="/admin/places">
+          <Bookings />
+        </Route>
+        <Route path="/user/book/:id">
+          <Book />
+        </Route>
+        <Route path="/user/bookings">
+          <Bookings />
+        </Route>
+        <Route path="/user/review">
+          <AddReview />
         </Route>
         <Route path="/login">
           <Login />

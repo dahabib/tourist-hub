@@ -13,7 +13,6 @@ const AdminPanel = () => {
                     <Dashboard />
                 </div>
             </div>
-
         </section>
     );
 };

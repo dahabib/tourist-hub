@@ -1,13 +1,16 @@
 import React from 'react';
 import Header from '../Header/Header';
-import Hero from '../Hero/Hero';
+import Places from '../Places/Places';
+import Services from '../Services/Services';
+import Reviews from '../Reviews/Reviews';
 
 const Home = () => {
     return (
         <div>
             <Header />
-            <Hero />
-            
+            <Places />
+            <Services />
+            <Reviews />
         </div>
     );
 };

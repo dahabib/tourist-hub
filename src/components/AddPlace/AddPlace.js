@@ -1,38 +1,38 @@
+import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { UserContext } from '../../App';
-import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
-import Sidebar from '../Sidebar/Sidebar';
+import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../App';
+import Sidebar from '../Sidebar/Sidebar';
 
-const AddService = () => {
+const AddPlace = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [imageURL, setImageURL] = useState({});
     const { register, handleSubmit } = useForm();
+    const history = useHistory();
 
     const onSubmit = data => {
-        const service = {
+        const placeInfo = {
             name: data.name,
             description: data.description,
-            location: data.location,
-            cost: data.cost,
+            region: data.region,
             image: imageURL,
-            createdBy: loggedInUser.name
+            addedBy: loggedInUser.name
         }
-        console.log(service);
 
-        fetch('https://tourist-hub.herokuapp.com/addService', {
+        fetch('https://tourist-hub.herokuapp.com/addPlace', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(service),
+            body: JSON.stringify(placeInfo),
         })
             .then(response => response.json())
             .then(data => {
-                alert('Service added successfully');
+                alert('Place added successfully');
             })
             .catch(error => {
                 console.error(error)
@@ -47,7 +47,6 @@ const AddService = () => {
         axios.post('https://api.imgbb.com/1/upload',
             imageData)
             .then(function (response) {
-                console.log(response);
                 setImageURL(response.data.data.display_url);
             })
             .catch(function (error) {
@@ -63,7 +62,7 @@ const AddService = () => {
                 </div>
 
                 <div className="col-span-4">
-                    <div className="bg-gray-900 h-full shadow-lg">
+                    <div className="bg-gray-900 shadow-lg">
                         <div className="flex items-center pl-6 h-20 border-b border-gray-800">
                             <div className="ml-1">
                                 <Link to='/' className="relative flex flex-row items-center h-11 focus:outline-none text-gray-500 hover:text-gray-200 border-transparent">
@@ -79,32 +78,27 @@ const AddService = () => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="overflow-y-auto overflow-x-hidden flex-grow bg-white">
+                        <div className="overflow-y-auto overflow-x-hidden h-full flex-grow bg-white">
                             <div className="col-lg-7 col-md-5 mx-auto rounded">
                                 <div className="card hover-top-shadow hover-top-shadow-lg border-0 card-form"><img className="card-img-top card-img-curve" src="assets/img/gallery/photo-2.png" alt="" />
                                     <div className="card-body p-4 pt-5">
                                         <form className="container" onSubmit={handleSubmit(onSubmit)}>
-                                            <h3>Add Service</h3>
+                                            <h3>Add Guide</h3>
                                             <div className="row mb-4 d-flex justify-content-between">
                                                 <div className="col w-50">
-                                                    <label for="name" className="form-label">Service Name</label>
-                                                    <input type="text" {...register("name")} className="form-control" id="name" placeholder="Service Name" />
+                                                    <input type="text" {...register("name")} className="form-control" id="name" placeholder="Name" />
                                                 </div>
                                                 <div className="col w-50">
-                                                    <label for="description" className="form-label">Description</label>
-                                                    <input type="text" {...register("description")} className="form-control" id="description" placeholder="Description" />
+                                                    <input type="region" {...register("region")} className="form-control" id="region" placeholder="Region" />
                                                 </div>
                                             </div>
+
                                             <div className="row mb-4 d-flex justify-content-between">
-                                                <div className="col w-50">
-                                                    <label for="location" className="form-label">Location</label>
-                                                    <input type="text" {...register("location")} className="form-control" id="location" placeholder="Location" />
-                                                </div>
-                                                <div className="col w-50">
-                                                    <label for="cost" {...register("cost")} className="form-label">Cost</label>
-                                                    <input type="number" {...register("cost", { min: 0, max: 99999 })} className="form-control" id="cost" placeholder="Cost" />
+                                                <div className="col w-100">
+                                                    <input type="textarea" {...register("description")} className="form-control" id="description" placeholder="Description" />
                                                 </div>
                                             </div>
+
                                             <div className="row mb-4 d-flex justify-content-between">
                                                 <div className="col w-50">
                                                     <div>
@@ -112,11 +106,8 @@ const AddService = () => {
                                                         <input type="file" {...register("image")} onChange={handleImageUploaded} className="form-control" id="image" hidden />
                                                     </div>
                                                 </div>
-
-                                                <div className="col w-50">
-                                                    <button className="btn btn-block btn-success text-white" type="submit">Save</button>
-                                                </div>
                                             </div>
+                                            <button className="btn btn-block btn-success text-white" type="submit">Save</button>
                                         </form>
                                     </div>
                                 </div>
@@ -131,4 +122,4 @@ const AddService = () => {
     );
 };
 
-export default AddService;
+export default AddPlace;

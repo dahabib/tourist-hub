@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Service from '../Service/Service';
 
 const Services = () => {
+    const [services, setServices] = useState();
+    useEffect(() => {
+        fetch('https://tourist-hub.herokuapp.com/services')
+            .then(res => res.json())
+            .then(data => setServices(data));
+    }, [])
+
     return (
-        <section class="text-gray-600 body-font">
-            <div class="container px-5 py-24 mx-auto">
-                <div class="text-center mb-20">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">Raw Denim Heirloom Man Braid</h1>
-                    <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug.</p>
-                    <div class="flex mt-6 justify-center">
-                        <div class="w-16 h-1 rounded-full bg-purple-500 inline-flex"></div>
-                    </div>
+        <section id="#services" className="text-gray-600 body-font">
+            <div className="text-center mb-10">
+                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">Available Tours</h1>
+                <div className="flex mt-2 justify-center">
+                    <div className="w-16 h-1 rounded-full bg-purple-500 inline-flex"></div>
                 </div>
-                <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+            </div>
+            <div className="container px-5 py-18 mx-auto">
+                <div className="flex flex-wrap gap-5 sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
                     {
-                        
+                        services && services.map(service => <Service key={service._id} service={service}></Service>)
                     }
                 </div>
-                <button class="flex mx-auto mt-16 text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">Button</button>
             </div>
         </section>
     );
