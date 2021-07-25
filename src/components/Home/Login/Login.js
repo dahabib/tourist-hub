@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import firebase from "firebase/app";
 import firebaseConfig from './firebase.config';
@@ -57,7 +57,6 @@ const Login = () => {
             .then(res => res.json())
             .then(data => {
                 const userCount = data.length;
-                console.log(userCount);
 
                 if (userCount === 0) {
                     fetch('https://tourist-hub.herokuapp.com/addUser', {
@@ -69,7 +68,7 @@ const Login = () => {
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log('User added successfully');
+                            alert('User added successfully');
                         })
                         .catch(error => {
                             console.error(error)
@@ -79,7 +78,7 @@ const Login = () => {
     }
 
     return (
-        <section class="min-h-screen flex items-stretch text-white ">
+        <section class="min-h-screen flex items-stretch text-white">
             <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center" style={{ backgroundImage: `url(${loginImage})` }}>
                 <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
                 <div class="w-full px-24 z-10">
@@ -89,7 +88,7 @@ const Login = () => {
                 <div class="bottom-2 absolute p-8 m-4 text-center right-0 left-0 flex justify-center space-x-8">
                     <span className="h-10 w-10">
                         <a href="http://facebook.com" target="_blank" rel="noreferrer" className="text-facebook">
-                            <FaFacebook className="w-full h-full rounded-full hover:text-white"/>
+                            <FaFacebook className="w-full h-full rounded-full hover:text-white" />
                         </a>
                     </span>
                     <span className="h-10 w-10">
@@ -119,7 +118,7 @@ const Login = () => {
                     </div>
                     <p class="text-gray-500 text-2xl">
                         or use email your account
-                </p>
+                    </p>
                     <form action="" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                         <div class="pb-2 pt-4">
                             <input type="email" name="email" id="email" placeholder="Email" class="block w-full p-4 text-lg rounded-sm bg-black" />

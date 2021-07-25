@@ -10,15 +10,15 @@ const Services = () => {
     }, [])
 
     return (
-        <section id="#services" className="text-gray-600 body-font">
+        <section id="#services" className="text-gray-600 body-font bg-green-400 py-10">
             <div className="text-center mb-10">
-                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">Available Tours</h1>
+                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">Available Tours</h1>
                 <div className="flex mt-2 justify-center">
-                    <div className="w-16 h-1 rounded-full bg-purple-500 inline-flex"></div>
+                    <div className="w-28 h-1 rounded-full bg-purple-500 inline-flex"></div>
                 </div>
             </div>
             <div className="container px-5 py-18 mx-auto">
-                <div className="flex flex-wrap gap-5 sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+                <div className="flex flex-row sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-x-6 justify-between">
                     {
                         services && services.map(service => <Service key={service._id} service={service}></Service>)
                     }

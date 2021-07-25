@@ -7,7 +7,6 @@ import Logo from '../../../images/logo2.png';
 const Navbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
-
     return (
         <div className="container mx-auto flex flex-wrap p-5 md:flex-row items-center h-10 top-0">
             <Link to='/' className="flex title-font font-medium items-center text-yellow-500 no-underline cursor-pointer md:mb-0">
@@ -43,7 +42,6 @@ const Navbar = () => {
                     </Link>
             }
         </div>
-
 
     );
 };

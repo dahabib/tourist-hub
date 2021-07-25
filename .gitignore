@@ -1,7 +1,7 @@
 # dependencies
-/node_modules
+node_modules
 .env
-_cacache
+_cacache/
 _locks
 _logs
 .firebase
